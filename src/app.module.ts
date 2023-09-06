@@ -3,12 +3,21 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CorsMiddleware } from './middlewares/cors.middleware';
+import { ConfigModule } from '@nestjs/config';
+import { join } from 'path';
 import { NuxtNavigation } from './modules/Nuxt-navigation/index.module'
+import { NextChatGpt } from './modules/Next-chat-gpt/index.module'
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/navigation-assistant'),
-    NuxtNavigation
+    MongooseModule.forRoot('mongodb://localhost:27017/next-gpt'),
+    ConfigModule.forRoot({
+      envFilePath: [
+        join(__dirname, '..', '.env.development.local')
+      ]
+    }),
+    // NuxtNavigation
+    NextChatGpt
   ],
   controllers: [AppController],
   providers: [AppService],
