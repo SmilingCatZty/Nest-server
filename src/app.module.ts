@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CorsMiddleware } from './middlewares/cors.middleware';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
-import { NuxtNavigation } from './modules/Nuxt-navigation/index.module'
+// import { NuxtNavigation } from './modules/Nuxt-navigation/index.module'
 import { NextChatGpt } from './modules/Next-chat-gpt/index.module'
 
 @Module({
@@ -13,7 +13,7 @@ import { NextChatGpt } from './modules/Next-chat-gpt/index.module'
     MongooseModule.forRoot('mongodb://localhost:27017/next-gpt'),
     ConfigModule.forRoot({
       envFilePath: [
-        join(__dirname, '..', '.env.development.local')
+        join(__dirname, '..', '.development.env'),
       ]
     }),
     // NuxtNavigation

@@ -21,4 +21,24 @@ export class MessageService {
     return message.save();
   }
 
+  /**
+   * 根据messageId查找数据
+   * @param {string}_id messageId 
+   * @returns 
+   */
+  findOne(_id: string): Promise<Message> {
+    return this.messageModel.findOne({ _id })
+  }
+
+  /**
+   * 更新会话内容
+   * @param {string} message_id 
+   * @param {string} gpt_response 
+   * @returns 
+   */
+  async update(id: string, gpt_response: string): Promise<Message> {
+    const message = await this.messageModel.findByIdAndUpdate(id, { gpt_response })
+    return message
+  }
+
 }
